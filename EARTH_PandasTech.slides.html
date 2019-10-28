@@ -13242,7 +13242,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="From-Excel-to-Python:-Using-Pandas-for-Data-Analysis">From Excel to Python: Using Pandas for Data Analysis<a class="anchor-link" href="#From-Excel-to-Python:-Using-Pandas-for-Data-Analysis">&#182;</a></h1><h2 id="Trista-McKenzie">Trista McKenzie<a class="anchor-link" href="#Trista-McKenzie">&#182;</a></h2><h3 id="Dept.-of-Earth-Sciences-Tech-Seminar">Dept. of Earth Sciences Tech Seminar<a class="anchor-link" href="#Dept.-of-Earth-Sciences-Tech-Seminar">&#182;</a></h3><h3 id="October-28,-2019">October 28, 2019<a class="anchor-link" href="#October-28,-2019">&#182;</a></h3>
+<h1 id="From-Excel-to-Python:-Using-Pandas-for-Data-Analysis">From Excel to Python: Using Pandas for Data Analysis<a class="anchor-link" href="#From-Excel-to-Python:-Using-Pandas-for-Data-Analysis">&#182;</a></h1><h2 id="Trista-McKenzie">Trista McKenzie<a class="anchor-link" href="#Trista-McKenzie">&#182;</a></h2><h3 id="Dept.-of-Earth-Sciences-Tech-Seminar">Dept. of Earth Sciences Tech Seminar<a class="anchor-link" href="#Dept.-of-Earth-Sciences-Tech-Seminar">&#182;</a></h3><h3 id="October-29,-2019">October 29, 2019<a class="anchor-link" href="#October-29,-2019">&#182;</a></h3>
 </div>
 </div>
 </div></section></section><section><section>
@@ -13555,13 +13555,17 @@ dtype: object</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Viewing-and-Inspecting-Data">Viewing and Inspecting Data<a class="anchor-link" href="#Viewing-and-Inspecting-Data">&#182;</a></h2><p><strong><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.head.html#pandas.DataFrame.head">First n rows</a></strong></p>
-<p>df.head(n)</p>
+
+<pre><code>df.head(n)</code></pre>
 <p><strong><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.tail.html#pandas.DataFrame.tail">Last n rows</a></strong></p>
-<p>df.tail(n)</p>
+
+<pre><code>df.tail(n)</code></pre>
 <p><strong><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.shape.html#pandas.DataFrame.shape">Number of rows and columns</a></strong></p>
-<p>df.shape</p>
+
+<pre><code>df.shape</code></pre>
 <p><strong><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.info.html">Index, datatype, memory info</a></strong></p>
-<p>df.info()</p>
+
+<pre><code>df.info()</code></pre>
 
 </div>
 </div>
@@ -13569,7 +13573,62 @@ dtype: object</pre>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Example:-Mauna-Loa-Monthly-Average-$CO_2$-dataset">Example: Mauna Loa Monthly Average $CO_2$ dataset<a class="anchor-link" href="#Example:-Mauna-Loa-Monthly-Average-$CO_2$-dataset">&#182;</a></h2><p>Download file here</p>
+<h2 id="Loading-data-into-Google-Colab">Loading data into Google Colab<a class="anchor-link" href="#Loading-data-into-Google-Colab">&#182;</a></h2>
+</div>
+</div>
+</div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Mounting Google Drive in your VM (instructions from Google)</span>
+
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="k">import</span> <span class="n">drive</span>
+<span class="n">drive</span><span class="o">.</span><span class="n">mount</span><span class="p">(</span><span class="s1">&#39;/gdrive&#39;</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div><div class="fragment">
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import PyDrive and associated libraries.</span>
+<span class="c1"># This only needs to be done once per notebook.</span>
+<span class="kn">from</span> <span class="nn">pydrive.auth</span> <span class="k">import</span> <span class="n">GoogleAuth</span>
+<span class="kn">from</span> <span class="nn">pydrive.drive</span> <span class="k">import</span> <span class="n">GoogleDrive</span>
+<span class="kn">from</span> <span class="nn">google.colab</span> <span class="k">import</span> <span class="n">auth</span>
+<span class="kn">from</span> <span class="nn">oauth2client.client</span> <span class="k">import</span> <span class="n">GoogleCredentials</span>
+
+<span class="c1"># Authenticate and create the PyDrive client.</span>
+<span class="c1"># This only needs to be done once per notebook.</span>
+<span class="n">auth</span><span class="o">.</span><span class="n">authenticate_user</span><span class="p">()</span>
+<span class="n">gauth</span> <span class="o">=</span> <span class="n">GoogleAuth</span><span class="p">()</span>
+<span class="n">gauth</span><span class="o">.</span><span class="n">credentials</span> <span class="o">=</span> <span class="n">GoogleCredentials</span><span class="o">.</span><span class="n">get_application_default</span><span class="p">()</span>
+<span class="n">drive</span> <span class="o">=</span> <span class="n">GoogleDrive</span><span class="p">(</span><span class="n">gauth</span><span class="p">)</span>
+
+<span class="c1"># Download a file based on its file ID.</span>
+<span class="c1">#</span>
+<span class="c1"># A file ID looks like: laggVyWshwcyP6kEI-y_W3P8D26sz</span>
+<span class="n">file_id</span> <span class="o">=</span> <span class="s1">&#39;REPLACE_WITH_YOUR_FILE_ID&#39;</span>
+<span class="n">downloaded</span> <span class="o">=</span> <span class="n">drive</span><span class="o">.</span><span class="n">CreateFile</span><span class="p">({</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">file_id</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Downloaded content &quot;</span><span class="si">{}</span><span class="s1">&quot;&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">downloaded</span><span class="o">.</span><span class="n">GetContentString</span><span class="p">()))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Example:-Mauna-Loa-Monthly-Average-$CO_2$-dataset">Example: Mauna Loa Monthly Average $CO_2$ dataset<a class="anchor-link" href="#Example:-Mauna-Loa-Monthly-Average-$CO_2$-dataset">&#182;</a></h2><p>Download file <a href="https://github.com/tamck/Pandas_tutorial/blob/master/co2_mm_mlo.csv">here</a></p>
 <p>Source: <a href="https://www.esrl.noaa.gov/gmd/ccgg/trends/data.html">NOAA Earth System Research Laboratory Global Monitoring Division</a>(downloaded 10/17/19)</p>
 <p>This dataset contains the monthly mean $CO_2$ mole fraction in parts per million (ppm) from March 1958 through September 2019 measured from the top of Mauna Loa.</p>
 <p><strong>Tasks</strong>:</p>
@@ -13776,9 +13835,9 @@ dtype: object</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Indexing-and-Data-Selection">Indexing and Data Selection<a class="anchor-link" href="#Indexing-and-Data-Selection">&#182;</a></h2><p><strong>Indexing</strong>: selecting specific rows/columns</p>
-<p>DataFrame['label'] = index columns by label</p>
-<p>DataFrame.loc['label'] = index by label</p>
-<p>DataFrame.iloc[#] = index by position or integer</p>
+<p><code>DataFrame['label']</code>= index columns by label</p>
+<p><code>DataFrame.loc['label']</code> = index by label</p>
+<p><code>DataFrame.iloc[#]</code> = index by position or integer</p>
 
 </div>
 </div>
@@ -14926,7 +14985,7 @@ Name: 2, dtype: float64</pre>
 <h2 id="Indexing-by-Date-and-Time">Indexing by Date and Time<a class="anchor-link" href="#Indexing-by-Date-and-Time">&#182;</a></h2><ul>
 <li>useful for temporal, time series data</li>
 </ul>
-<p>pd.to_datetime()</p>
+<p><code>pd.to_datetime()</code></p>
 
 </div>
 </div>
@@ -15042,15 +15101,15 @@ Name: 2, dtype: float64</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Dropping-columns-and-rows">Dropping columns and rows<a class="anchor-link" href="#Dropping-columns-and-rows">&#182;</a></h2><p><strong>Dropping entire columns or rows based on index</strong></p>
-<p>df.drop('Label', axis = 1)</p>
+<p><code>df.drop('Label', axis = 1)</code></p>
 <p>Axis = 1 for columns
 Axis = 0 for rows</p>
-<p><strong>Dropping entire rows because of missing values</strong>
-<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna">df.dropna()</a></p>
+<p><strong>Dropping <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.dropna.html#pandas.DataFrame.dropna">entire rows</a> because of missing values</strong></p>
+<p><code>df.dropna()</code></p>
 <p><strong>Dropping entire columns because of missing values</strong></p>
-<p>df.dropna(axis = 1)</p>
+<p><code>df.dropna(axis = 1)</code></p>
 <p><strong>Dropping a row based on value</strong>
-df[df.column != value]</p>
+<code>df[df.column != value]</code></p>
 
 </div>
 </div>
@@ -15171,13 +15230,13 @@ df[df.column != value]</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Filtering,-Sorting,-and-Groupby">Filtering, Sorting, and Groupby<a class="anchor-link" href="#Filtering,-Sorting,-and-Groupby">&#182;</a></h2><p><strong>sort column values into ascending order</strong></p>
-<p>df.sort_values(column)</p>
+<p><code>df.sort_values(column)</code></p>
 <p><strong>sort column values into descending order</strong></p>
-<p>df.sort_values(column, ascending = False)</p>
+<p><code>df.sort_values(column, ascending = False)</code></p>
 <p><strong>filtering (only column values with year greater than a certain value)</strong></p>
-<p>df[df[column] &gt; value]</p>
+<p><code>df[df[column] &gt; value]</code></p>
 <p><strong>groupby</strong></p>
-<p>df.groupby(column)</p>
+<p><code>df.groupby(column)</code></p>
 
 </div>
 </div>
@@ -15785,16 +15844,16 @@ Date
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Basic-Summary-Statistics">Basic Summary Statistics<a class="anchor-link" href="#Basic-Summary-Statistics">&#182;</a></h2><p><strong>Summary stats</strong></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html#pandas.DataFrame.describe">df.describe()</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html#pandas.DataFrame.describe"><code>df.describe()</code></a></p>
 <p><strong>Correlation between columns</strong></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.corr.html#pandas.DataFrame.corr">df.corr()</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.corr.html#pandas.DataFrame.corr"><code>df.corr()</code></a></p>
 <p><strong>Other useful functions (all covered under summary stats)</strong></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.mean.html#pandas.DataFrame.mean">df.mean()</a></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.count.html#pandas.DataFrame.count">df.count()</a></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.max.html#pandas.DataFrame.max">df.max()</a></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.min.html#pandas.DataFrame.min">df.min()</a></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.median.html#pandas.DataFrame.median">df.median()</a></p>
-<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.std.html#pandas.DataFrame.std">df.std()</a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.mean.html#pandas.DataFrame.mean"><code>df.mean()</code></a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.count.html#pandas.DataFrame.count"><code>df.count()</code></a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.max.html#pandas.DataFrame.max"><code>df.max()</code></a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.min.html#pandas.DataFrame.min"><code>df.min()</code></a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.median.html#pandas.DataFrame.median"><code>df.median()</code></a></p>
+<p><a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.std.html#pandas.DataFrame.std"><code>df.std()</code></a></p>
 
 </div>
 </div>
@@ -16150,8 +16209,9 @@ Name: CO2_avg, dtype: float64</pre>
 <li>allow for quick summarization of data</li>
 </ul>
 <p><strong>Creating a <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.pivot_table.html">pivot table</a> in Pandas</strong></p>
-<p>pd.pivot_table(data, values = '', index = '', columns = [col names])</p>
+<p><code>pd.pivot_table(data, values = '', index = '', columns = [col names])</code></p>
 <p>Example from <a href="https://towardsdatascience.com/intro-to-pandas-for-excel-super-users-dac1b38f12b0">here</a> using Chicago Public Schools 2016-2017 Progress Report data</p>
+<p>Download datasets <a href="https://github.com/tamck/Pandas_tutorial/blob/master/Chicago_Public_Schools_-_School_Progress_Reports_SY1516.csv">here</a> and <a href="https://github.com/tamck/Pandas_tutorial/blob/master/Chicago_Public_Schools_-_School_Progress_Reports_SY1617.csv">here</a></p>
 
 </div>
 </div>
@@ -17224,14 +17284,14 @@ Name: CO2_avg, dtype: float64</pre>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Other-Useful-Functions">Other Useful Functions<a class="anchor-link" href="#Other-Useful-Functions">&#182;</a></h2><h3 id="Join/Combine">Join/Combine<a class="anchor-link" href="#Join/Combine">&#182;</a></h3><p><strong>add the rows in df1 to the end of df2 (must have identical columns)</strong>
-df1.append(df2)</p>
+<code>df1.append(df2)</code></p>
 <p><strong>add the columns in df1 to the end of df2 (must have identical rows)</strong>
-df.concat([df1, df2], axis = 1)</p>
-<h3 id="Renaming-columns">Renaming columns<a class="anchor-link" href="#Renaming-columns">&#182;</a></h3><p>df.rename(columns = {'old_name': 'new_name'})</p>
-<p>df.set_index('column_one')</p>
+<code>df.concat([df1, df2], axis = 1)</code></p>
+<h3 id="Renaming-columns">Renaming columns<a class="anchor-link" href="#Renaming-columns">&#182;</a></h3><p><code>df.rename(columns = {'old_name': 'new_name'})</code></p>
+<p><code>df.set_index('column_one')</code></p>
 <p><strong>arithmetic</strong>
-df['total'] = df['Jan'] + df['Feb'] + df['Mar']</p>
-<h3 id="Converting-string-data-to-datetime-format">Converting string data to datetime format<a class="anchor-link" href="#Converting-string-data-to-datetime-format">&#182;</a></h3><p>datetime_conv = pd.to_datetime(pd.Series(['Jan 01, 2018', '2018-12-31']))</p>
+<code>df['total'] = df['Jan'] + df['Feb'] + df['Mar']</code></p>
+<h3 id="Converting-string-data-to-datetime-format">Converting string data to datetime format<a class="anchor-link" href="#Converting-string-data-to-datetime-format">&#182;</a></h3><p><code>datetime_conv = pd.to_datetime(pd.Series(['Jan 01, 2018', '2018-12-31']))</code></p>
 
 </div>
 </div>
@@ -17247,19 +17307,6 @@ df['total'] = df['Jan'] + df['Feb'] + df['Mar']</p>
 
 </div>
 </div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
 </div></section></section>
 </div>
 </div>
