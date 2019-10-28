@@ -1,4 +1,4 @@
-# Tutorials_2
+# Pandas Tutorial
 
 This repository contains an introductory Python Pandas tutorial written by Trista McKenzie (www.github.com/tamck).
 
