@@ -1,6 +1,6 @@
 # Pandas Tutorial
 
-This repository contains an introductory Python Pandas tutorial written by Trista McKenzie (www.github.com/tamck).
+This repository contains an introductory Python Pandas tutorial written by Tristan McKenzie (www.github.com/tamck).
 
 co2_mm_mlo.csv dataset downloaded from NOAA Earth System Research Laoratory Global Monitoring Division on October 17, 2019: https://www.esrl.noaa.gov/gmd/ccgg/trends/data.html
 
